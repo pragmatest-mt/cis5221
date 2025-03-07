@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
 
         savedUserEntity = Optional.of(userRepository.save(userEntity));
 
+        // Add comment
         if (savedUserEntity.isEmpty()) {
             return Optional.empty();
         }
