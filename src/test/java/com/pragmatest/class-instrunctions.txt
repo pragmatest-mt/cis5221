@@ -1,0 +1,29 @@
+UoM CD lecture
+
+URL for mvn/IDE run -> http://localhost:8081/swagger-ui.html#/user-controller
+Heroku -> https://mysterious-mesa-72833-39c2f1a80f70.herokuapp.com/swagger-ui.html#/user-controller
+
+Heroku key 
+-> https://dashboard.heroku.com/account
+
+1. Explain Docker
+2. Make sure Rancher Desktop is running. Confirm this with `docker` command in terminal
+3. run `docker build -t user-portal:latest .` in root folder
+4. run `docker images`
+5. run `docker run -e PORT=8081 -p 8082:8081 user-portal` 
+
+server.port=${PORT:8081} -> it will take the PORT in the env variable or default to 8081. -e is passing the port as 8081. 
+
+6. load `http://localhost:8082/swagger-ui.html#/user-controller` in browser
+7. Explain the concept of CD, deployments and how we are using heroku to deploy the App somewhere and test the API
+8. Show UserApiTest.java and cd.yml
+
+
+Create an app on heroku
+1. Go to https://dashboard.heroku.com/apps
+2. Create new app. Name can be left empty. Select europe. Click on create app. 
+3. Go to terminal.
+4. run `docker build --platform linux/amd64 -t registry.heroku.com/fathomless-mountain-31685/web .`
+5. run `docker push registry.heroku.com/fathomless-mountain-31685/web`
+6. run `heroku container:release web -a fathomless-mountain-31685`
+7. Click on Open App and add `/swagger-ui.html#/user-controller` tp IR:
